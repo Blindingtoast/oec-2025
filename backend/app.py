@@ -1,7 +1,9 @@
 from flask import Flask, request
 from database.examples import create_examples
 from database.models import db, Report, User
-from api import api
+from api.reports import reports
+from api.users import users
+from functions.alerts import setup_env
 import os
 
 
@@ -12,10 +14,16 @@ def create_app(config_name: str = "default") -> Flask:
         _type_: Flask
     """
     app = Flask(__name__)
-    app.register_blueprint(api)
+    app.register_blueprint(users)
+    app.register_blueprint(reports)
     if config_name == "testing":
         # So that testing data does not persist
         app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///:memory:"
+        app.config["twilio"] = "disabled"
+        if setup_env():
+            app.config["twilio"] = "enabled"
+        else:
+            app.config["twilio"] = "disabled"
     else:
         app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///database.db"
 

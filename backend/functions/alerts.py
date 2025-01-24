@@ -10,14 +10,35 @@ from twilio.rest import Client
 # Load environment variables from .env file
 load_dotenv()
 
-USER = os.getenv("USER")
-PASSWORD = os.getenv("PASSWORD")
-SMTP_SERVER = os.getenv("SMTP_SERVER")
-PORT = int(os.getenv("PORT"))
+USER = None
+PASSWORD = None
+SMTP_SERVER = None
+PORT = None
 
-ACCOUNT_SSID = os.getenv("ACCOUNT_SSID")
-AUTH_TOKEN = os.getenv("AUTH_TOKEN")
-PHONE_NUMBER = os.getenv("PHONE_NUMBER")
+ACCOUNT_SSID = None
+AUTH_TOKEN = None
+PHONE_NUMBER = None
+
+
+def setup_env():
+    """Tries to set the environment variables
+
+    Returns:
+        bool: true if the environment variables are valid and have been loaded, false if they are not and twilio should not be used
+    """
+    try:
+        USER = os.getenv("USER")
+        PASSWORD = os.getenv("PASSWORD")
+        SMTP_SERVER = os.getenv("SMTP_SERVER")
+        PORT = int(os.getenv("PORT"))
+
+        ACCOUNT_SSID = os.getenv("ACCOUNT_SSID")
+        AUTH_TOKEN = os.getenv("AUTH_TOKEN")
+        PHONE_NUMBER = os.getenv("PHONE_NUMBER")
+    except Exception: 
+        return False
+    return True
+
 
 def email_alert(subject: str, body: str, email_address: str) -> None:
     """

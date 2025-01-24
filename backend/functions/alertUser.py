@@ -1,6 +1,6 @@
 import math
 from database.models import User
-from functions.alerts import send_alerts
+from alerts import send_alerts
 import configparser
 from database.models import db
 
