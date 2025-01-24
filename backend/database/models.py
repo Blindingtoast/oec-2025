@@ -81,6 +81,6 @@ class UserNotification(db.Model):
     does not receive multiple notifications at the same time."""
 
     id = db.Column(db.Integer, primary_key=True)
-    user_id = db.Column(db.Integer, db.ForeignKey("User.id"), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey("user.id"), nullable=False)
     disaster_type = db.Column(db.String(50), nullable=False)
     notification_time = db.Column(db.DateTime, nullable=False)
