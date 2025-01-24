@@ -15,13 +15,6 @@ def create_app():
     app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///database.db"
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     create_db(app)
-
-    @app.route("/")
-    def hello_world():
-        return {"response": "Hello, World!"}
-
-    app.register_blueprint(api)
-
     return app
 
 
