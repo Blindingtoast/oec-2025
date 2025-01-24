@@ -1,7 +1,8 @@
 import pytest
-from backend.database.models import UsersSchema, ReportsSchema
+from backend.database.models import UserSchema, ReportSchema
 import random
 import datetime
+
 
 def generate_report(lat, lon, deviation, types):
     """Create a report to be sent by a client, with a random name
@@ -14,22 +15,30 @@ def generate_report(lat, lon, deviation, types):
     """
     rand_lat = random.gauss(lat, deviation)
     rand_lon = random.gauss(lon, deviation)
-    rand_time = datetime.now()
+    reporttime = datetime.datetime.now().iosformat()
+    report = ReportSchema(
+        lat=rand_lat,
+        long=rand_lon,
+        type=random.choice(types),
+        time=reporttime,
+        description="This is a test report",
+    )
+    return report
 
-    report = ReportSchema
-    return 
-    
-    
-def create_user():
-    pass
 
-def 
+def generate_user(lat, lon, deviation):
+    rand_lat = random.gauss(lat, deviation)
+    rand_lon = random.gauss(lon, deviation)
+    user = UserSchema(lat=rand_lat, long=rand_lon)
+    return user
+
 
 def test_add_single_user(client):
-    create_user()
+    user = generate_user()
     # A dict with the different fields in the request body we need
-    data
-    client.post()
+    client.post("/users", data=user.model_dump())
+
 
 def test_single_report(client):
-    generate_report(0, 0, 10)
+    report = generate_report()
+    client.post("/reports", data=report.model_dump())
