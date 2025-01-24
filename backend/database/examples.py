@@ -1,4 +1,4 @@
-from database.models import db, Report, User
+from backend.database.models import db, Report, User
 from datetime import datetime
 
 

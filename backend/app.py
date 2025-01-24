@@ -1,7 +1,7 @@
 from flask import Flask, request
-from database.examples import create_examples
-from database.models import db
-from api import api
+from backend.database.examples import create_examples
+from backend.database.models import db
+from backend.api import api
 import os
 
 

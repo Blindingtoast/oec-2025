@@ -5,11 +5,7 @@ db = SQLAlchemy()
 
 
 class Report(db.Model):
-    """A report of an incident.
-
-    Args:
-        db (_type_): The SQLAlchemy database instance.
-    """
+    """A report of an incident."""
 
     id = db.Column(db.Integer, primary_key=True)
     lat = db.Column(db.Float, nullable=False)
@@ -35,11 +31,7 @@ class Report(db.Model):
 
 
 class ReportSchema(BaseModel):
-    """A schema to validate when creating a report.
-
-    Args:
-        BaseModel (_type_): The Pydantic base model.
-    """
+    """A schema to validate when creating a report."""
 
     lat: float
     long: float
@@ -49,11 +41,7 @@ class ReportSchema(BaseModel):
 
 
 class User(db.Model):
-    """A user of the application who wants to receive reports.
-
-    Args:
-        db (_type_): The SQLAlchemy database instance.
-    """
+    """A user of the application who wants to receive reports."""
 
     id = db.Column(db.Integer, primary_key=True)
     lat = db.Column(db.Float, nullable=False)
@@ -61,11 +49,7 @@ class User(db.Model):
 
 
 class UserSchema(BaseModel):
-    """A schema to validate when creating a user.
-
-    Args:
-        BaseModel (_type_): The Pydantic base model.
-    """
+    """A schema to validate when creating a user."""
 
     lat: float
     long: float
