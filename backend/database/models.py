@@ -46,6 +46,8 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     lat = db.Column(db.Float, nullable=False)
     long = db.Column(db.Float, nullable=False)
+    email = db.Column(db.String(100), nullable=False)
+    phone = db.Column(db.String(20), nullable=False)
 
 
 class UserSchema(BaseModel):
@@ -53,3 +55,15 @@ class UserSchema(BaseModel):
 
     lat: float
     long: float
+    email: str
+    phone: str
+
+
+class UserNotification(db.Model):
+    """Instances of users receiving notifications. Used to ensure that a user
+    does not receive multiple notifications at the same time."""
+
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey("User.id"), nullable=False)
+    disaster_type = db.Column(db.String(50), nullable=False)
+    notification_time = db.Column(db.DateTime, nullable=False)
