@@ -106,7 +106,7 @@ async def notify_users_within_radius(disaster: dict):
     message += f"Report Time: {disaster_time}\n"
     message += f"Please visit the following resources for help if needed or call 911"
 
-    radius_km = float(config["DEFAULT"][disaster_type].replace("km", ""))
+    radius_km = float(config["DISASTER"][disaster_type].replace("km", ""))
 
     min_lat, max_lat, min_lon, max_lon = calculate_radius_bound(
         disaster_lat, disaster_lon, radius_km
