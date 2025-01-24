@@ -4,3 +4,4 @@
 instance/database.db
 **/.python-version
 .env
+**/instance/

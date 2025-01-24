@@ -1,18 +1,23 @@
 from flask import Flask, request
 from backend.database.examples import create_examples
-from backend.database.models import db
+from backend.database.models import db, Report, User
 from backend.api import api
 import os
 
 
-def create_app():
+def create_app(config_name: str = "default") -> Flask:
     """Create a Flask application instance.
 
     Returns: The Flask app instance.
         _type_: Flask
     """
     app = Flask(__name__)
-    app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///database.db"
+    if config_name == "testing":
+        # So that testing data does not persist
+        app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///:memory:"
+    else:
+        app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///database.db"
+
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     create_db(app)
     return app
