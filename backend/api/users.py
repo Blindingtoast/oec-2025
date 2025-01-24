@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request, Response
 from pydantic import ValidationError
 
-from backend.database.models import db, User, UserSchema
+from database.models import db, User, UserSchema
 
 users = Blueprint("users", __name__)
 

@@ -7,7 +7,6 @@ services:
     networks:
       - default
 
-  # Reverse proxy which serves static build files and proxies API requests to the backend
   frontend:
     build:
       context: ./frontend

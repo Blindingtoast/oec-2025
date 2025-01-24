@@ -1,4 +1,4 @@
-from backend.database.models import db, Report, User
+from database.models import db, Report, User
 from datetime import datetime
 
 
@@ -128,7 +128,7 @@ def create_user_examples():
     """Create example users in the database."""
     users = [
         (43.239563, -79.885557, "blindingtoast3@gmail.com", "+12897757139"),
-        (43.242927, -79.897079, "btran0820003@gmail.com", "+1613854427"),
+        (43.242927, -79.897079, "btran0820003@gmail.com", "+16138544327"),
     ]
     for user in users:
         create_user(*user)
