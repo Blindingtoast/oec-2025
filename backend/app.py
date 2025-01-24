@@ -1,6 +1,7 @@
 from flask import Flask, request
 from database.examples import create_examples
 from database.models import db
+from api import api
 import os
 
 
@@ -19,6 +20,8 @@ def create_app():
     def hello_world():
         return {"response": "Hello, World!"}
 
+    app.register_blueprint(api)
+
     return app
 
 
@@ -29,7 +32,9 @@ def create_db(app: Flask):
         app: The Flask application instance.
             _type_: Flask
     """
-    exists = os.path.exists("database.db")
+    exists = os.path.exists(
+        os.path.join(os.path.dirname(__file__), "instance", "database.db")
+    )
     db.init_app(app)
     with app.app_context():
         db.create_all()
