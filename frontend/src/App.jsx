@@ -10,6 +10,7 @@ import ReportForm from "./pages/ReportForm";
 import ModifyReport from "./pages/ModifyReport";
 import NotifyMe from "./pages/NotifyMe";
 import NoPage from "./pages/NoPage";
+import Map from "./pages/Map";
 
 function App() {
 	const [count, setCount] = useState(0);
@@ -22,6 +23,7 @@ function App() {
 				<Route path="report/modify/:id" element={<ModifyReport />} />
 				<Route path="notifyMe" element={<NotifyMe />} />
 				<Route path="*" element={<NoPage />} />
+				<Route path="/map" element={<Map />} />
 			</Routes>
 		</BrowserRouter>
 	);
