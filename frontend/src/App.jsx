@@ -17,7 +17,7 @@ function App() {
 				<Route index element={<Home />} />
 				<Route path="report/create" element={<ReportForm />} />
 				<Route path="report/modify/:id" element={<ModifyReport />} />
-				<Route path="notifyMe" element={<NotifyMe />} />
+				<Route path="notify-me" element={<NotifyMe />} />
 				<Route path="*" element={<NoPage />} />
 			</Routes>
 		</BrowserRouter>
