@@ -1,7 +1,7 @@
-from flask import Blueprint, jsonify, request, Response, current_app
+from flask import Blueprint, jsonify, request, current_app
 from pydantic import ValidationError
-
 from backend.database.models import db, Report, ReportSchema
+from backend.functions.alertUser import notify_users_within_radius
 
 reports = Blueprint("reports", __name__)
 
@@ -24,6 +24,11 @@ def create_report():
     db.session.add(report)
     db.session.commit()
     current_app.logger.info("Report created successfully.")
+
+    # Notify users within the radius of the disaster
+    # asynch
+    notify_users_within_radius(disaster=data)
+
     return jsonify({"response": "Report created."})
 
 
