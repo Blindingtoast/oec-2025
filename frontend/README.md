@@ -1,0 +1,23 @@
+# Frontend React Application
+
+This is a React application built using Vite, and the frontend to the fullstack application
+
+## Installation
+
+Production builds are done using Docker and Docker Compose (see the readme a folder up)
+
+To install for local development, simply run the installation command (you will need Node.js and npm installed):
+
+`npm install`
+
+## Running
+
+Run the development server using
+
+`npm run dev`
+
+This will open a developer server on `http://localhost:5173`, with auto-reload on changes to the code.
+
+
+The development server will proxy API calls to the backend during development. To use these API calls, you must
+also run the backend by following the directions of the README.md there.

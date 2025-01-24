@@ -1,0 +1,23 @@
+services:
+  backend:
+    build:
+      context: ./backend
+    ports:
+      - "8000:8000"
+    networks:
+      - default
+
+  # Reverse proxy which serves static build files and proxies API requests to the backend
+  frontend:
+    build:
+      context: ./frontend
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - default
+
+networks:
+  default:
+    driver: bridge
