@@ -12,6 +12,7 @@ def create_app(config_name: str = "default") -> Flask:
         _type_: Flask
     """
     app = Flask(__name__)
+    app.register_blueprint(api)
     if config_name == "testing":
         # So that testing data does not persist
         app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///:memory:"
@@ -37,7 +38,14 @@ def create_db(app: Flask):
     with app.app_context():
         db.create_all()
         if not exists:
-            create_examples()
+            # create_examples()
+            pass
+
+
+def clear_db(app: Flask):
+    with app.app_context():
+        db.drop_all()
+        db.create_all()
 
 
 if __name__ == "__main__":
