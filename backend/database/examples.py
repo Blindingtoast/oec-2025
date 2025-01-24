@@ -21,14 +21,14 @@ def create_report(lat: float, long: float, type: str, time: str, description: st
         lat=lat,
         long=long,
         type=type,
-        time=datetime.fromisoformat(time),
+        time=time,
         description=description,
     )
     db.session.add(report)
     db.session.commit()
 
 
-def create_user(lat: float, long: float):
+def create_user(lat: float, long: float, email: str | None, phone: str | None):
     """Create a new user in the database.
 
     Args:
@@ -36,13 +36,17 @@ def create_user(lat: float, long: float):
             _type_: float
         long: The longitude of the user.
             _type_: float
+        email: The email of the user.
+            _type_: str
+        phone: The phone number of the user.
+            _type_: str
     """
-    user = User(lat=lat, long=long)
+    user = User(lat=lat, long=long, email=email, phone=phone)
     db.session.add(user)
     db.session.commit()
 
 
-def create_examples():
+def create_example_reports():
     """Create example reports in the database."""
     reports = [
         (
@@ -118,3 +122,20 @@ def create_examples():
     ]
     for report in reports:
         create_report(*report)
+
+
+def create_user_examples():
+    """Create example users in the database."""
+    users = [
+        (43.239563, -79.885557, "blindingtoast3@gmail.com", "+12897757139"),
+        (43.242927, -79.897079, "btran0820003@gmail.com", "+1613854427"),
+    ]
+    for user in users:
+        create_user(*user)
+
+
+def create_examples():
+    """Create example reports and users in the database."""
+    print("Creating example reports and users.")
+    create_example_reports()
+    create_user_examples()

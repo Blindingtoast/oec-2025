@@ -32,14 +32,13 @@ def create_db(app: Flask):
             _type_: Flask
     """
     exists = os.path.exists(
-        os.path.join(os.path.dirname(__file__), "instance", "database.db")
+        os.path.join(os.path.dirname(os.path.dirname(__file__)), "instance/database.db")
     )
     db.init_app(app)
     with app.app_context():
         db.create_all()
         if not exists:
-            # create_examples()
-            pass
+            create_examples()
 
 
 def clear_db(app: Flask):
