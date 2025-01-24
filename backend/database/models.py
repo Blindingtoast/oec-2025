@@ -14,6 +14,21 @@ class Report(db.Model):
     time = db.Column(db.DateTime, nullable=False)
     description = db.Column(db.String(500), nullable=False)
 
+    def to_dict(self):
+        """Convert the report to a dictionary.
+
+        Returns: The report as a dictionary.
+            _type_: dict
+        """
+        return {
+            "id": self.id,
+            "lat": self.lat,
+            "long": self.long,
+            "type": self.type,
+            "time": self.time.isoformat(),
+            "description": self.description,
+        }
+
 
 class ReportSchema(BaseModel):
     """A schema to validate when creating a report."""
