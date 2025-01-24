@@ -1,7 +1,7 @@
 import React from "react";
 
-const ModifyReport = () => {
-	return <div>ModifyReport</div>;
+const ModifyForm = () => {
+	return <div>ModifyForm</div>;
 };
 
-export default ModifyReport;
+export default ModifyForm;
