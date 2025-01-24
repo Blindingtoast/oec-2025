@@ -1,25 +1,39 @@
-// make a dock that have 4 bottons, home, notify, and add
-
 import * as React from "react"
 import { Button } from "@/components/ui/button"
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover"
-import { cn } from "@/lib/utils"
 import { BellRing, CirclePlus, Home } from "lucide-react"
 
-export const NavDock = () => {
+const NavBar = () => {
   return (
     <>
-      <div className="flex gap-10 absolute bottom-10 justify-center w-full">
-
-        <Button>
-          <BellRing className="h-6 w-6" />
-          Notify Me</Button>
-        <Button><Home className="h-6 w-6" /> Home</Button>
-        <Button><CirclePlus className="h-6 w-6" />
-          Add Disaster</Button>
+      <div className="p-4 flex items-center justify-between w-full">
+        <div>
+          CANotify
+        </div>
+        <div className="flex gap-6 justify-center">
+          <a href="/notify-me">
+            <Button >
+              <BellRing />
+              Notify Me
+            </Button>
+          </a>
+          <a href="/">
+            <Button >
+              <Home />
+              Home
+            </Button>
+          </a>
+          <a href="/report/create">
+            <Button >
+              <CirclePlus />
+              Add Disaster
+            </Button>
+          </a>
+        </div>
       </div>
     </>
   )
 }
 
-export default NavDock
+
+
+export default NavBar
