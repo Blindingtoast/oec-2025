@@ -86,7 +86,7 @@ def calculate_radius_bound(lat: float, lon: float, radius_km: float):
     )
 
 
-async def notify_users_within_radius(disaster: dict):
+def notify_users_within_radius(disaster: dict, app):
     """_summary_
 
     Args:
@@ -112,24 +112,31 @@ async def notify_users_within_radius(disaster: dict):
         disaster_lat, disaster_lon, radius_km
     )
 
-    try:
-        users = (
-            db.session.query(User)
-            .filter(
-                User.lat.between(min_lat, max_lat), User.long.between(min_lon, max_lon)
-            )
-            .all()
-        )
-
-        for user in users:
-            if is_within_radius(
-                disaster_lat, disaster_lon, user.lat, user.long, radius_km
-            ):
-                await send_alerts(
-                    subject=SUBJECT,
-                    body=message,
-                    email_address=user.email,
-                    phone_number=user.phone,
+    with app.app_context():
+        try:
+            users = (
+                db.session.query(User)
+                .filter(
+                    User.lat.between(min_lat, max_lat),
+                    User.long.between(min_lon, max_lon),
                 )
-    finally:
-        db.session.close()
+                .all()
+            )
+
+            print(f"Found {len(users)} users within the radius.")
+
+            for user in users:
+                if is_within_radius(
+                    disaster_lat, disaster_lon, user.lat, user.long, radius_km
+                ):
+                    try:
+                        send_alerts(
+                            subject=SUBJECT,
+                            body=message,
+                            email_address=user.email,
+                            phone_number=user.phone,
+                        )
+                    except Exception as e:
+                        print(f"Error sending alert to user {user.id}: {e}")
+        finally:
+            db.session.close()

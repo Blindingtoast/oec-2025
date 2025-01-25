@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify, request, current_app
 from pydantic import ValidationError
 from functions.alertUser import notify_users_within_radius
 from database.models import db, Report, ReportSchema
+from threading import Thread
 
 reports = Blueprint("reports", __name__)
 
@@ -27,7 +28,10 @@ def create_report():
 
     # Notify users within the radius of the disaster
     # asynch
-    notify_users_within_radius(disaster=data)
+    Thread(
+        target=notify_users_within_radius,
+        kwargs={"disaster": data, "app": current_app._get_current_object()},
+    ).start()
 
     return jsonify({"response": "Report created."})
 
