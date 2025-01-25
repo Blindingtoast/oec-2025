@@ -1,7 +1,18 @@
-# OEC
+# CaNotify
 
-Our solution for OEC uses uses Flask for the backend and React to implement a frontend. It is designed
+CaNotify is a way to allow people to collaboratively report common community to nationwide problems. Users can 
+- Report a disaster (like a flood, earthquake, fire, or tsunami), which will be added to a database of user reports
+- Subscribe to email or text notifications for reports made near them
+- Use our API to make integrations with other tools and data analysis techniques
+
+It's a expandable system that is built to last, incorporating extensive testing, docstrings, and good coding practices.
+
+Our solution uses Flask for the backend and React to implement a frontend. It is designed
 to be easily deployed using Docker and Docker Compose.
+
+## Accessibility
+
+The simple interface and lack of pop-ups or other distracting elements lets users focus on what's important and directs their eyes to the most important information first
 
 ## Getting Started
 
@@ -14,8 +25,8 @@ to be easily deployed using Docker and Docker Compose.
 
 1. Clone the repository:
    ```
-   git clone <repository-url>
-   cd oecdesign
+   git clone git@github.com:Blindingtoast/oec-2025.git
+   cd oec-2025
    ```
 
 2. Build and run the application using Docker Compose:
@@ -26,7 +37,7 @@ to be easily deployed using Docker and Docker Compose.
 3. Access the application at `http://localhost` (no port number needs to be specified, as NGINX is bound to port 80)
 
 
-## Overview
+## Structure
 
 This application is split into a backend and frontend component. They interact with eachother through HTTP GET/POST requests.
 
