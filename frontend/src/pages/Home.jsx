@@ -6,14 +6,16 @@ const Home = () => {
 	return (
 		<>
 			<NavDock />
-			<Map />
+			<div className="flex justify-center items-center">
+				<Map />
+			</div>
 		</>
 	);
 };
 
 const containerStyle = {
-	width: "100vw",
-	height: "100vh",
+	width: "90vw",
+	height: "90vh",
 };
 
 const center = {

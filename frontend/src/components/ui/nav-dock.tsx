@@ -2,30 +2,30 @@ import * as React from "react"
 import { Button } from "@/components/ui/button"
 import { BellRing, CirclePlus, Home } from "lucide-react"
 
-const NavBar = () => {
+const NavDock = () => {
   return (
     <>
       <div className="p-4 flex items-center justify-between w-full">
         <div>
-          CANotify
+          <img src="/logo.png" alt="logo" className="h-8" />
         </div>
-        <div className="flex gap-6 justify-center">
+        <div className="flex gap-2 sm:gap-6 justify-center">
           <a href="/notify-me">
             <Button >
               <BellRing />
-              Notify Me
+              <div className="hidden sm:block">Notify Me</div>
             </Button>
           </a>
           <a href="/">
             <Button >
               <Home />
-              Home
+              <div className="hidden sm:block">Home</div>
             </Button>
           </a>
           <a href="/report/create">
             <Button >
               <CirclePlus />
-              Add Disaster
+              <div className="hidden sm:block">Add Disaster</div>
             </Button>
           </a>
         </div>
@@ -36,4 +36,4 @@ const NavBar = () => {
 
 
 
-export default NavBar
+export default NavDock
