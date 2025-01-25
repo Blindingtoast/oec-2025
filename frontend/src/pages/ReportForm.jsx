@@ -44,7 +44,7 @@ const ReportForm = () => {
             lat: latitude,
             long: longitude,
             type: type,
-            time: new Date().toISOString(),
+            time: new Date().toISOString().replace('Z', ''),
             description: description,
         };
 
