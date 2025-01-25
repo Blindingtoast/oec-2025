@@ -1,5 +1,5 @@
 import pytest
-from database.models import UserSchema, ReportSchema, User, Report, db
+from backend.database.models import UserSchema, ReportSchema, User, Report, db
 import random
 import datetime
 

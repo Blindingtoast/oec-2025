@@ -23,7 +23,7 @@ def create_app(config_name: str = "default") -> Flask:
         app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///database.db"
         # Set TWILIO to false if it shouldn't be used
         app.config["TWILIO"] = setup_env()
-        app.logger.info(f"app twilio is enabled: {app.config["TWILIO"]}")
+        app.logger.info(f"app twilio is enabled: {app.config['TWILIO']}")
 
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     create_db(app)
