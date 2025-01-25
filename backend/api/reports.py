@@ -12,7 +12,6 @@ def create_report():
     """Create a new report.
 
     Returns: A JSON response.
-        _type_: Response
     """
     data = request.get_json()
     current_app.logger.info(f"Creating a new report {data}")
