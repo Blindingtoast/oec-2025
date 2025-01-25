@@ -1,7 +1,0 @@
-**/venv
-**/package-lock.json
-**/__pycache__
-instance/database.db
-**/.python-version
-.env
-**/instance/
