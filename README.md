@@ -59,3 +59,4 @@ unnecessary duplication of information.
 ## Citations
 
 We use a number of Python and NPM packages, which can be seen in the requirements.txt and package.json files. We also use Docker to run our solution and NGINX to serve our solution.
+
