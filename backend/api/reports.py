@@ -27,10 +27,11 @@ def create_report():
 
     # Notify users within the radius of the disaster
     # asynch
-    Thread(
-        target=notify_users_within_radius,
-        kwargs={"disaster": data, "app": current_app._get_current_object()},
-    ).start()
+    if current_app.config["TWILIO"]:
+        Thread(
+            target=notify_users_within_radius,
+            kwargs={"disaster": data, "app": current_app._get_current_object()},
+        ).start()
 
     return jsonify({"response": "Report created."})
 
