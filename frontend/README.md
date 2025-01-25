@@ -1,4 +1,4 @@
-# Frontend
+# CANotify Frontend
 
 This is a React application built using Vite, and the frontend to the CANotify
 

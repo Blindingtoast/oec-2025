@@ -60,4 +60,5 @@ unnecessary duplication of information.
 
 We use a number of Python and NPM packages, which can be seen in the requirements.txt and package.json files. We also use Docker to run our solution and NGINX to serve our solution.
 
+
 For our logo: [1] Wikimedia Commons, “Maple Leaf.svg.” [Online]. Available: https://commons.wikimedia.org/wiki/File:Maple_Leaf.svg. [Accessed: 24-Jan-2025]. 
