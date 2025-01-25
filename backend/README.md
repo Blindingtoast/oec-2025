@@ -1,4 +1,4 @@
-# Backend
+# CANotify Backend
 
 This directory contains the backend built using Flask.
 
