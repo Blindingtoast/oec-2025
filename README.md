@@ -12,7 +12,7 @@ to be easily deployed using Docker and Docker Compose.
 
 ## Accessibility
 
-The simple interface and lack of pop-ups or other distracting elements lets users focus on what's important and directs their eyes to the most important information first
+The simple interface and few uses of pop-ups or other distracting elements lets users focus on what's important and directs their eyes to the most important information first
 
 ## Getting Started
 
@@ -34,7 +34,8 @@ The simple interface and lack of pop-ups or other distracting elements lets user
    docker-compose up
    ```
 
-3. Access the application at `http://localhost` (no port number needs to be specified, as NGINX is bound to port 80)
+3. Add .env files where necessary (see your email for more information)
+4. Access the application at `http://localhost` (no port number needs to be specified, as NGINX is bound to port 80)
 
 
 ## Structure
