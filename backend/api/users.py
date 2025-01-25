@@ -19,7 +19,18 @@ def notify_user():
     except ValidationError as e:
         return jsonify({"error": e.errors()})
 
+    existing_user = User.query.filter(
+        (User.email == data.get("email")) | (User.phone == data.get("phone"))
+    ).first()
+
+    if existing_user:
+        return (
+            jsonify({"error": "User with this email or phone number already exists"}),
+            409,
+        )
+
     user = User(**data)
     db.session.add(user)
     db.session.commit()
+
     return jsonify({"response": "User will be updated."})
