@@ -63,11 +63,11 @@ async def generate_reports(
         while True:
             report = generate_report(lat, lon, deviation, [report_type])
             await send_report(session, report)
-            time = time()
+            cur_time = time()
             # Get the number of reports to generate this second (sampling the pdf) and then sleep for the inverse to generate them evenly spaced
             # the number of reports coming into the system, graphed over time, should look like a normal distribution (like how they might in real life)
             to_generate = 1 / (
-                gauss_pdf(time, time_mean, reports_dev_time) * reports_scaler
+                gauss_pdf(cur_time, time_mean, reports_dev_time) * reports_scaler
             )
             for _ in to_generate:
                 report = generate_report(lat, lon, deviation, [report_type])
