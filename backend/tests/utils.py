@@ -30,5 +30,7 @@ def generate_report(lat, lon, deviation, types):
 def generate_user(lat, lon, deviation):
     rand_lat = random.gauss(lat, deviation)
     rand_lon = random.gauss(lon, deviation)
-    user = UserSchema(lat=rand_lat, long=rand_lon)
+    email = "testemail@email.com"
+    phone = "123-456-7890"
+    user = UserSchema(lat=rand_lat, long=rand_lon, email=email, phone=phone)
     return user
