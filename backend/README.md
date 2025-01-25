@@ -54,3 +54,6 @@ They also make it easy to find where important logic is for future maintainers.
 
 After installing the required dependencies, all tests can be run by simply executing the command `pytest` in this folder.
 Good testing is a core part of good software, and luckily Flask allows for complete coverage of application code.
+
+Currently, we test most of our API calls with sample data, testing simple use cases and more complicated ones. Testing can be easily expanded in the future too, 
+which will ensure the project can stand the test of time.
