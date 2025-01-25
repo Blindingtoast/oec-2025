@@ -78,7 +78,7 @@ const ReportForm = () => {
             <NavDock />
             <Card className="m-10 sm:m-20 w-max-[900px]">
                 <CardHeader>
-                    <CardTitle>Add a Disaster</CardTitle>
+                    <CardTitle>Report a Disaster</CardTitle>
                     <CardDescription>What is happening around you?</CardDescription>
                 </CardHeader>
                 <CardContent>
@@ -93,12 +93,13 @@ const ReportForm = () => {
                                         <SelectValue placeholder="Select" />
                                     </SelectTrigger>
                                     <SelectContent position="popper">
-                                        <SelectItem value="earthquake">Earthquake</SelectItem>
-                                        <SelectItem value="flood">Flood</SelectItem>
-                                        <SelectItem value="fire">Fire</SelectItem>
-                                        <SelectItem value="hurricane">Hurricane</SelectItem>
-                                        <SelectItem value="tornado">Tornado</SelectItem>
-                                        <SelectItem value="tsunami">Tsunami</SelectItem>
+                                        <SelectItem value="Earthquake">Earthquake</SelectItem>
+                                        <SelectItem value="Flood">Flood</SelectItem>
+                                        <SelectItem value="Fire">Fire</SelectItem>
+                                        <SelectItem value="Hurricane">Hurricane</SelectItem>
+                                        <SelectItem value="Tornado">Tornado</SelectItem>
+                                        <SelectItem value="Tsunami">Tsunami</SelectItem>
+                                        <SelectItem value="Blizzard">Blizzard</SelectItem>
                                     </SelectContent>
                                 </Select>
                             </div>

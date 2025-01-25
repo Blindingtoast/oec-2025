@@ -7,7 +7,9 @@ const NavDock = () => {
     <>
       <div className="p-4 flex items-center justify-between w-full">
         <div>
-          <img src="/logo.png" alt="logo" className="h-8" />
+          <a href="/">
+            <img src="/logo.png" alt="logo" className="h-8" />
+          </a>
         </div>
         <div className="flex gap-2 sm:gap-6 justify-center">
           <a href="/notify-me">

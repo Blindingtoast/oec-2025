@@ -101,18 +101,16 @@ def notify_users_within_radius(disaster: dict, app):
     disaster_type = disaster.get("type")
     disaster_time = disaster.get("time")
 
-    message = "IMPORTANT MESSAGE WILL BELLOW"
+    message = "IMPORTANT MESSAGE WILL FOLLOW BELLOW\n"
     message += f"Disaster Type: {disaster_type}\n"
     message += f"Report Time: {disaster_time}\n\n"
-    message += f"Please visit the following resources for help.\n"
+    message += f"Please visit the following resources for help.\n\n"
 
     radius_km = float(config["DISASTER"][disaster_type].replace("km", ""))
-    emergency_contact = radius_km = float(
-        config["DISASTER"]["Resource"].replace("km", "")
-    )
-
+    emergency_contact = config["DISASTER"][f"{disaster_type}_Resource"]
+    emergency_contact = emergency_contact.replace("\\n", "\n")
     message += emergency_contact
-    message += "\nCALL 911 IF YOU NEED IMMEDIATE ASSISTANCE"
+    message += "\n\nCALL 911 IF YOU NEED IMMEDIATE ASSISTANCE"
 
     min_lat, max_lat, min_lon, max_lon = calculate_radius_bound(
         disaster_lat, disaster_lon, radius_km
