@@ -1,4 +1,5 @@
 from flask import Blueprint, jsonify, request, current_app
+from datetime import datetime
 from pydantic import ValidationError
 from backend.functions.alertUser import notify_users_within_radius
 from backend.database.models import db, Report, ReportSchema
@@ -58,7 +59,7 @@ def modify_report():
     report.lat = data["lat"]
     report.long = data["long"]
     report.type = data["type"]
-    report.time = data["time"]
+    report.time = datetime.fromisoformat(data["time"])
     report.description = data["description"]
     db.session.commit()
     current_app.logger.info("Report modified successfully.")
