@@ -25,15 +25,11 @@ def create_report():
 
     # Notify users within the radius of the disaster
     # asynch
-<<<<<<< HEAD
-    Thread(
-        target=notify_users_within_radius,
-        kwargs={"disaster": data, "app": current_app._get_current_object()},
-    ).start()
-=======
     if current_app.config["twilio"] == "enabled":
-        notify_users_within_radius(disaster=data)
->>>>>>> 0e96184 (fix imports and setup problems)
+        Thread(
+            target=notify_users_within_radius,
+            kwargs={"disaster": data, "app": current_app._get_current_object()},
+        ).start()
 
     return jsonify({"response": "Report created."})
 
