@@ -1,7 +1,7 @@
 # Conftest.py is a file that contains fixtures that are shared across multiple test files
 import pytest
-from app import create_app, clear_db
-from database.models import db
+from backend.app import create_app, clear_db
+from backend.database.models import db
 
 
 # Use this fixture to do interactions with the app

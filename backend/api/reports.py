@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request, current_app
 from pydantic import ValidationError
-from functions.alertUser import notify_users_within_radius
-from database.models import db, Report, ReportSchema
+from backend.functions.alertUser import notify_users_within_radius
+from backend.database.models import db, Report, ReportSchema
 from threading import Thread
 
 reports = Blueprint("reports", __name__)
