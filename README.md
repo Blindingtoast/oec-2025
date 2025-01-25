@@ -1,6 +1,6 @@
-# CaNotify
+# CANotify
 
-CaNotify is a way to allow people to collaboratively report common community to nationwide problems. Users can 
+CANotify is a way to allow people to collaboratively report common community to nationwide problems. Users can 
 - Report a disaster (like a flood, earthquake, fire, or tsunami), which will be added to a database of user reports
 - Subscribe to email or text notifications for reports made near them
 - Use our API to make integrations with other tools and data analysis techniques
