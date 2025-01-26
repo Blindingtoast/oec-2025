@@ -1,7 +1,8 @@
-from api.database.models import User, Report, db
-from api.tests.utils import generate_user, generate_report
 import time
 import logging
+
+from api.database.models import User, Report, db
+from utils import generate_report, generate_user
 
 logger = logging.getLogger(__name__)
 

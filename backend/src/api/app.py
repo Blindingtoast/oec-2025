@@ -15,7 +15,7 @@ def create_app(config_name: str = "default") -> Flask:
         _type_: Flask
     """
     app = Flask(__name__)
-    app.register_blueprint(api)
+    app.register_blueprint(api_bp)
 
     if config_name == "testing":
         # So that testing data does not persist
