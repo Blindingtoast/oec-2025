@@ -2,8 +2,8 @@ import aiohttp
 import asyncio
 from time import time
 import math
-from backend.tests.utils import generate_report
-from backend.database.models import ReportSchema
+from tests.utils import generate_report
+from api.database.models import ReportSchema
 
 TEST_API = "http://localhost:8000"
 TEST_TYPES = ["fire", "flood", "earthquake", "tornado", "hurricane"]

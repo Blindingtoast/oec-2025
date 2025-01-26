@@ -1,9 +1,11 @@
-from flask import Flask, request
-from backend.database.examples import create_examples
-from backend.database.models import db, Report, User
-from backend.api import api
 import os
-from backend.functions.alerts import setup_env
+
+from flask import Flask, request
+
+from api.database.examples import create_examples
+from api.database.models import db, Report, User
+from api.routes import api_bp
+from api.functions.alerts import setup_env
 
 
 def create_app(config_name: str = "default") -> Flask:
@@ -13,7 +15,7 @@ def create_app(config_name: str = "default") -> Flask:
         _type_: Flask
     """
     app = Flask(__name__)
-    app.register_blueprint(api)
+    app.register_blueprint(api_bp)
 
     if config_name == "testing":
         # So that testing data does not persist

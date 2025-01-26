@@ -1,5 +1,6 @@
-from pydantic import BaseModel
 from datetime import datetime
+
+from pydantic import BaseModel
 from flask_sqlalchemy import SQLAlchemy
 
 db = SQLAlchemy()
