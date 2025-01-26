@@ -17,7 +17,7 @@ def generate_report(lat, lon, deviation, types):
     deg_dev = deviation / 111.0
     rand_lat = random.gauss(lat, deg_dev)
     rand_lon = random.gauss(lon, deg_dev)
-    reporttime = datetime.datetime.now().isoformat()
+    reporttime = datetime.datetime.now()
     report = ReportSchema(
         lat=rand_lat,
         long=rand_lon,

@@ -54,7 +54,7 @@ class ReportSchema(BaseModel):
     lat: float
     long: float
     type: str
-    time: str
+    time: datetime
     description: str
 
 

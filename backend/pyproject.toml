@@ -14,6 +14,7 @@ dependencies = [
     "pytest",
     "twilio",
     "aiohttp",
+    "flask-sock",
     'importlib-metadata; python_version<"3.10"',
 ]
 
