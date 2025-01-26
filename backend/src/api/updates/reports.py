@@ -22,6 +22,9 @@ UPDATE_INTERVAL = 5
 def get_updates(since: datetime) -> ReportUpdate:
     """Get all updates since the given time."""
     updates = db.session.query(Report).filter(Report.time >= since).all()
+    updates = [
+        ReportSchema.model_validate(update, from_attributes=True) for update in updates
+    ]
     current_app.logger.info("got some updates to send: " + str(updates))
     return ReportUpdate(reports=updates, time=datetime.now())
 
@@ -45,5 +48,3 @@ def setup_sock(app):
             updates = get_updates(now)
             if updates:
                 sock.send(updates.model_dump_json())
-            else:
-                sock.send("no updates")

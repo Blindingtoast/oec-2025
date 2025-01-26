@@ -2,13 +2,14 @@ import asyncio
 from time import time
 import math
 import argparse
+import json
 
 import aiohttp
 
 from tests.utils import generate_report
 from api.database.models import ReportSchema
 
-TEST_API = "http://localhost:80/api"
+TEST_API = "http://localhost:5173/api"
 TEST_TYPES = ["fire", "flood", "earthquake", "tornado", "hurricane"]
 
 
@@ -19,8 +20,11 @@ async def send_report(session, report: ReportSchema):
         session (aiohttp.ClientSession): The aiohttp session
         report (dict): The report data to send
     """
+    data = report.model_dump()
+    print(data)
+    data = json.loads(report.model_dump_json())
     async with session.post(
-        f"{TEST_API}/reports/create", json=report.model_dump()
+        f"{TEST_API}/reports/create", json=data
     ) as response:
         if response.status != 200:
             print(f"Failed to create report: {response.status}")
@@ -72,11 +76,12 @@ async def generate_reports(
             )
             if to_generate == 0:
                 await asyncio.sleep(1)
-            print(f"going to create {to_generate} reports of type {report_type}")
-            for _ in range(to_generate):
-                report = generate_report(lat, lon, deviation, [report_type])
-                await send_report(session, report)
-                await asyncio.sleep(1 / to_generate)
+            else:
+                print(f"going to create {to_generate} reports of type {report_type}")
+                for _ in range(to_generate):
+                    report = generate_report(lat, lon, deviation, [report_type])
+                    await send_report(session, report)
+                    await asyncio.sleep(1 / to_generate)
 
 
 async def main():
