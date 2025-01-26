@@ -1,7 +1,8 @@
 from flask import Blueprint, jsonify, request, current_app
+from datetime import datetime
 from pydantic import ValidationError
-from functions.alertUser import notify_users_within_radius
-from database.models import db, Report, ReportSchema
+from backend.functions.alertUser import notify_users_within_radius
+from backend.database.models import db, Report, ReportSchema
 from threading import Thread
 
 reports = Blueprint("reports", __name__)
@@ -12,7 +13,6 @@ def create_report():
     """Create a new report.
 
     Returns: A JSON response.
-        _type_: Response
     """
     data = request.get_json()
     current_app.logger.info(f"Creating a new report {data}")
@@ -28,10 +28,11 @@ def create_report():
 
     # Notify users within the radius of the disaster
     # asynch
-    Thread(
-        target=notify_users_within_radius,
-        kwargs={"disaster": data, "app": current_app._get_current_object()},
-    ).start()
+    if current_app.config["TWILIO"]:
+        Thread(
+            target=notify_users_within_radius,
+            kwargs={"disaster": data, "app": current_app._get_current_object()},
+        ).start()
 
     return jsonify({"response": "Report created."})
 
@@ -58,7 +59,7 @@ def modify_report():
     report.lat = data["lat"]
     report.long = data["long"]
     report.type = data["type"]
-    report.time = data["time"]
+    report.time = datetime.fromisoformat(data["time"])
     report.description = data["description"]
     db.session.commit()
     current_app.logger.info("Report modified successfully.")

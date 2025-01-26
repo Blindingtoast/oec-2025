@@ -1,8 +1,9 @@
 from flask import Flask, request
-from database.examples import create_examples
-from database.models import db, Report, User
-from api import api
+from backend.database.examples import create_examples
+from backend.database.models import db, Report, User
+from backend.api import api
 import os
+from backend.functions.alerts import setup_env
 
 
 def create_app(config_name: str = "default") -> Flask:
@@ -13,11 +14,16 @@ def create_app(config_name: str = "default") -> Flask:
     """
     app = Flask(__name__)
     app.register_blueprint(api)
+
     if config_name == "testing":
         # So that testing data does not persist
         app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///:memory:"
+        app.config["TWILIO"] = False
     else:
         app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///database.db"
+        # Set TWILIO to false if it shouldn't be used
+        app.config["TWILIO"] = setup_env()
+        app.logger.info(f"app twilio is enabled: {app.config['TWILIO']}")
 
     app.config["SQLALCHEMY_TRACK_MODIFICATIONS"] = False
     create_db(app)

@@ -1,7 +1,0 @@
-flask
-gunicorn
-Flask-SQLAlchemy
-python-dotenv
-pydantic
-pytest
-twilio
