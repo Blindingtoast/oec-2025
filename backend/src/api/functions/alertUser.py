@@ -1,8 +1,10 @@
 import math
-from database.models import User
-from functions.alerts import send_alerts
+
 import configparser
-from database.models import db
+
+from api.database.models import User
+from api.functions.alerts import send_alerts
+from api.database.models import db
 
 # Config setup
 config = configparser.ConfigParser()

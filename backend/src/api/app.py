@@ -1,10 +1,11 @@
 import os
+
 from flask import Flask, request
 
-from database.examples import create_examples
-from database.models import db, Report, User
-from routes import api_bp
-from functions.alerts import setup_env
+from api.database.examples import create_examples
+from api.database.models import db, Report, User
+from api.routes import api_bp
+from api.functions.alerts import setup_env
 
 
 def create_app(config_name: str = "default") -> Flask:

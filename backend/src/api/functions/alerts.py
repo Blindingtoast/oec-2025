@@ -1,6 +1,7 @@
 import smtplib
 import os
 import ssl
+
 from dotenv import load_dotenv
 from email.message import EmailMessage
 from twilio.rest import Client
