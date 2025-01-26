@@ -12,10 +12,7 @@ reports = Blueprint("reports", __name__)
 
 @reports.route("/reports/create", methods=["POST"])
 def create_report():
-    """Create a new report.
-
-    Returns: A JSON response.
-    """
+    """Create a new report."""
     data = request.get_json()
     current_app.logger.info(f"Creating a new report {data}")
     try:
@@ -41,11 +38,7 @@ def create_report():
 
 @reports.route("/reports/modify", methods=["POST"])
 def modify_report():
-    """Modify an existing report.
-
-    Returns: A JSON response.
-        _type_: Response
-    """
+    """Modify an existing report."""
     current_app.logger.info("Modifying a report.")
     data = request.get_json()
     try:
@@ -70,11 +63,7 @@ def modify_report():
 
 @reports.route("/reports/delete", methods=["POST"])
 def delete_report():
-    """Delete an existing report.
-
-    Returns: A JSON response.
-        _type_: Response
-    """
+    """Delete an existing report."""
     current_app.logger.info("Deleting a report.")
     data = request.get_json()
     report = Report.query.get(data["id"])
@@ -89,13 +78,19 @@ def delete_report():
 
 @reports.route("/reports/locations", methods=["GET"])
 def get_locations():
-    """Get all the report locations.
-
-    Returns: A JSON response.
-        _type_: Response
-    """
+    """Get all the report locations."""
     current_app.logger.info("Fetching all report locations.")
     reports = Report.query.all()
     locations = [report.to_dict() for report in reports]
     current_app.logger.info("Report locations fetched successfully.")
     return jsonify(locations)
+
+
+@reports.route("/reports/clearall", methods=["GET"])
+def clear_all_reports():
+    """Clear all the reports."""
+    current_app.logger.info("Clearing all reports.")
+    db.session.query(Report).delete()
+    db.session.commit()
+    current_app.logger.info("All reports cleared successfully.")
+    return jsonify({"response": "All reports cleared."})
