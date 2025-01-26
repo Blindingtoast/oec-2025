@@ -1,5 +1,5 @@
-from backend.database.models import User, Report, db
-from backend.tests.utils import generate_user, generate_report
+from api.database.models import User, Report, db
+from api.tests.utils import generate_user, generate_report
 import time
 import logging
 

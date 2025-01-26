@@ -1,6 +1,6 @@
 import random
 import datetime
-from backend.database.models import ReportSchema, UserSchema
+from api.database.models import ReportSchema, UserSchema
 
 
 def generate_report(lat, lon, deviation, types):
