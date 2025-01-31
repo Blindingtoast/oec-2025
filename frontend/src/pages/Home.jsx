@@ -3,9 +3,12 @@ import NavDock from "@/components/ui/nav-dock";
 import { GoogleMap, useJsApiLoader, Marker } from "@react-google-maps/api";
 import { useEffect, useState } from "react";
 
+const mapMarkers = (report) => ({ lat: report.lat, lng: report.long });
+
 const Home = () => {
 	const [center, setCenter] = useState(null);
 	const [markerPositions, setMarkerPositions] = useState([]);
+	const [locationsSocket, setLocationsSocket] = useState(null);
 
 	useEffect(() => {
 		if (navigator.geolocation) {
@@ -13,15 +16,19 @@ const Home = () => {
 		} else {
 			console.log("Geolocation not supported");
 		}
-
+		console.log("Fetching locations", markerPositions);
 		// get json from api/reports/location and set markerPositions
 		fetch("/api/reports/locations")
 			.then((response) => response.json())
 			.then((data) => {
-				setMarkerPositions(data.map((report) => ({ lat: report.lat, lng: report.long })));
+				setMarkerPositions(data.map(mapMarkers))
 			});
-
-		console.log("Fetching locations", markerPositions);
+		// open a websocket that will give us any new markers that show up
+		setLocationsSocket(new WebSocket("/api/updates/reports"));
+		locationsSocket.addEventListener("message", (data) => {
+			console.log("got some new markers");
+			setMarkerPositions(markerPositions.concat(data.map(mapMarkers)));
+		});
 	}, []);
 
 	function success(position) {
